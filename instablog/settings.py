@@ -15,6 +15,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,6 +49,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'instablog.wsgi.application'
 
+# 시작패키지의 settings.py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
