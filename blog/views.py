@@ -2,24 +2,30 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 # from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 
 from .models import Post
 from .models import Category
 
 
 def list_posts(request):
-    try:
-        page = int(request.GET['page'])
-        if page < 1:
-            page = 1
-    except Exception:
-        page = 1
-    per_page = 5
+    page = request.GET.get('page', 1)
+    per_page = 2
 
-    posts = Post.objects.order_by('-created_at')[page-1:page*per_page]
+    posts = Post.objects.order_by('-created_at')
+    pg = Paginator(posts, per_page)
+
+    try:
+        contents = pg.page(page)
+    except PageNotAnInteger:
+        contents = pg.page(1)
+    except EmptyPage:
+        contents = []
 
     return render(request, 'list.html', {
-        'posts': posts,
+        'posts': contents,
     })
 
 
@@ -63,4 +69,15 @@ def edit_post(request, pk):
     return render(request, 'edit.html', {
         'post': post,
         'categories': categories,
+    })
+
+
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('blog:list_post')
+
+    return render(request, 'delete.html', {
+        'post': post,
     })

@@ -1,0 +1,10 @@
+<h3>{{ post.title }} 삭제 확인</h3>
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>
+        정말로 지우시겠습니까?
+    </p>
+    <p>
+        <input type="submit" value="삭제" />
+    </p>
+</form>
