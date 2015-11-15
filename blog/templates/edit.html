@@ -1,0 +1,21 @@
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>
+        <label>글 갈래</label>
+        <select name="category">
+        {% for category in categories %}
+            <option value="{{ category.pk }}">{{ category.name }}</option>
+        {% endfor %}
+        </select>
+    </p>
+    <p>
+        <label>제목</label><input type="text" name="title" />
+    </p>
+    <p>
+        <textarea name="content"></textarea>
+    </p>
+    <p>
+        <input type="submit" value="저장" />
+    </p>
+</form>

@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+# from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 
 from .models import Post
+from .models import Category
 
 
 def list_posts(request):
@@ -26,3 +29,26 @@ def view_post(request, pk):
     return render(request, 'view.html', {
         'post': post,
     })
+
+
+def create_post(request):
+    if request.method == 'GET':
+        categories = Category.objects.all()
+        ctx = {
+            'categories': categories,
+        }
+    else:
+        form = request.POST
+        category = get_object_or_404(Category, pk=form['category'])
+        post = Post(
+            title=form['title'],
+            content=form['content'],
+            category=category,
+        )
+        post.full_clean()
+        post.save()
+        # return redirect(reverse('blog:view_post', kwargs={'pk': post.pk}))
+        return redirect('blog:view_post', pk=post.pk)
+
+    return render(request, 'edit.html', ctx)
+
