@@ -5,7 +5,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     category = models.ForeignKey('Category')
-    tags = models.ManyToManyField('Tag')
+    tags = models.ManyToManyField('Tag', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
