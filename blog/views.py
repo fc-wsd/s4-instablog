@@ -52,3 +52,15 @@ def create_post(request):
 
     return render(request, 'edit.html', ctx)
 
+
+def edit_post(request, pk):
+    if request.method == 'GET':
+        post = get_object_or_404(Post, pk=pk)
+        categories = Category.objects.all()
+    else:
+        return create_post(request)
+
+    return render(request, 'edit.html', {
+        'post': post,
+        'categories': categories,
+    })
