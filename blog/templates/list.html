@@ -1,0 +1,15 @@
+
+{% for post in posts %}
+    <div class="post_container">
+        <h3 class="post_title">{{ post.title }}</h3>
+
+        <div class="post_content">{{ post.content }}</div>
+
+        <div>
+            <p><span>글 갈래</span>{{ post.category.name }}</p>
+            <p><span>작성일시</span>{{ post.created_at }}</p>
+        </div>
+    </div>
+{% empty %}
+    <p>글이 하나도 없습니다.</p>
+{% endfor %}

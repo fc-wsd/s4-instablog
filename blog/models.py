@@ -12,6 +12,9 @@ class Post(models.Model):
     def __str__(self):
         return '<Post {}: "{}">'.format(self.pk, self.title[:8])
 
+    def get_absolute_url(self):
+        return '/posts/{}/'.format(self.pk)
+
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
