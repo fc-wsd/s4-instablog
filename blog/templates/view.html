@@ -1,0 +1,21 @@
+    <div class="post_container">
+        <h3 class="post_title">{{ post.title }}</h3>
+
+        <div class="post_content">{{ post.content }}</div>
+
+        <div>
+            <p><span>글 갈래</span>{{ post.category.name }}</p>
+            <p><span>작성일시</span>{{ post.created_at }}</p>
+        </div>
+    </div>
+
+    <div class="comments_container">
+        {% for comment in post.comment_set.all %}
+        <div class="comment_container">
+            <div class="comment_content">{{ comment.content }}</div>
+            <p><span>작성일시</span>{{ comment.created_at }}</p>
+        </div>
+        {% empty %}
+            <p>댓글이 없습니다.</p>
+        {% endfor %}
+    </div>

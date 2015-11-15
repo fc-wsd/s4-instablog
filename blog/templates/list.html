@@ -1,7 +1,7 @@
 
 {% for post in posts %}
     <div class="post_container">
-        <h3 class="post_title">{{ post.title }}</h3>
+        <h3 class="post_title"><a href="{% url 'blog:view_post' post.pk %}">{{ post.title }}</a></h3>
 
         <div class="post_content">{{ post.content }}</div>
 

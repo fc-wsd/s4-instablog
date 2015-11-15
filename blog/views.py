@@ -18,3 +18,11 @@ def list_posts(request):
     return render(request, 'list.html', {
         'posts': posts,
     })
+
+
+def view_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    return render(request, 'view.html', {
+        'post': post,
+    })
