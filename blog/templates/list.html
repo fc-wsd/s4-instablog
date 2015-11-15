@@ -1,3 +1,10 @@
+{% extends 'blog_layout.html' %}
+
+{% block page_title %}글 목록{% endblock %}
+
+{% block body %}
+
+    {{ "abcd"|join:" " }}
 
 {% for post in posts %}
     <div class="post_container">
@@ -23,3 +30,5 @@
 {% if posts.has_next %}
 <span><a href="?page={{ posts.next_page_number }}">다음 쪽</a></span>
 {% endif %}
+
+{% endblock %}

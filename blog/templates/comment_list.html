@@ -1,0 +1,10 @@
+    <div class="comments_container">
+        {% for comment in comments %}
+        <div class="comment_container">
+            <div class="comment_content">{{ comment.content }}</div>
+            <p><span>작성일시</span>{{ comment.created_at }}</p>
+        </div>
+        {% empty %}
+            <p>댓글이 없습니다.</p>
+        {% endfor %}
+    </div>
