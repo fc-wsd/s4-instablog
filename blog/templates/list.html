@@ -1,10 +1,9 @@
 {% extends 'blog_layout.html' %}
+{% load bootstrap3 %}
 
 {% block page_title %}글 목록{% endblock %}
 
 {% block body %}
-
-    {{ "abcd"|join:" " }}
 
 {% for post in posts %}
     <div class="post_container">
@@ -21,14 +20,6 @@
     <p>글이 하나도 없습니다.</p>
 {% endfor %}
 
-{% if posts.has_previous %}
-<span><a href="?page={{ posts.previous_page_number }}">이전 쪽</a></span>
-{% endif %}
-
-<span>{{ posts.number }} / {{ posts.paginator.num_pages }}</span>
-
-{% if posts.has_next %}
-<span><a href="?page={{ posts.next_page_number }}">다음 쪽</a></span>
-{% endif %}
+    {% bootstrap_pagination posts %}
 
 {% endblock %}

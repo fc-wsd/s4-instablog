@@ -1,25 +1,36 @@
+{% extends 'blog_layout.html' %}
+{% load bootstrap3 %}
+
+{% block page_title %}글 작성{% endblock %}
+
+{% block body %}
+
 {% if post %}
 <h3>{{ post.title }} 고치기</h3>
 {% endif %}
-<form method="POST" action="">
+<form method="POST" action="" class="form-horizontal">
     {% csrf_token %}
-    <p>
-        <label>글 갈래</label>
-        <select name="category">
+    <div class="form-group form-group-sm">
+        <label class="col-sm-2 control-label">글 갈래</label>
+        <div class="col-sm-10">
+        <select name="category" class="form-control input-sm">
         {% for category in categories %}
             <option value="{{ category.pk }}"
             {% if post.category.pk == category.pk %}selected{% endif %}>
             {{ category.name }}</option>
         {% endfor %}
         </select>
+        </div>
+    </div>
+    <p>
+        <input type="text" name="title" value="{{ post.title }}" class="form-control" placeholder="글 제목" />
     </p>
     <p>
-        <label>제목</label><input type="text" name="title" value="{{ post.title }}" />
+        <textarea name="content" class="form-control" rows="10">{{ post.content }}</textarea>
     </p>
     <p>
-        <textarea name="content">{{ post.content }}</textarea>
-    </p>
-    <p>
-        <input type="submit" value="저장" />
+        {% bootstrap_button "저장" button_type="submit" button_class="btn-primary" %}
     </p>
 </form>
+
+{% endblock %}
