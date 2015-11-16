@@ -26,8 +26,6 @@ def list_posts(request):
 
     return render(request, 'list.html', {
         'posts': contents,
-        'aa': range(10),
-        'bb': range(10),
     })
 
 
