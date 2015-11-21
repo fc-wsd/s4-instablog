@@ -17,6 +17,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'blog',
     'bootstrap3',
+    'blogtest',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -35,7 +36,7 @@ ROOT_URLCONF = 'instablog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'template_dir')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,3 +70,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
