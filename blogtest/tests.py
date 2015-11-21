@@ -73,8 +73,8 @@ class PostTest(TestCase):
             content='Lorem Ipsum',
         )
 
-        # 카테고리가 없고 이에 대한 예외 처리가 없으므로 500 서버 에러.
-        self.assertEqual(response.status_code, 500)
+        # 카테고리가 없고 이에 대한 예외 처리가 없으므로 404, 500 서버 에러.
+        self.assertIn(response.status_code, (404, 500,))
 
         category = self._add_category_by_model()
         response = self._add_post_by_http(
@@ -115,7 +115,7 @@ class PostTest(TestCase):
         # 모델로 가져온 데이터 개수와 같은지 비교.
         self.assertEqual(posts.count(), res_count)
 
-    def test_detail_post(self):
+    def test_view_post(self):
         """개별 글 페이지가 의도대로 동작하는지 테스트.
         """
         # 존재하지 않는 사진에 접근.
