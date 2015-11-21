@@ -14,5 +14,23 @@
 - Admin 인터페이스 확장
 - bootstrap3 적용
 
+### 4주차 test 과제 수행 방법
 
+1. 자신의 블로그 프로젝트 저장소를 만드세요.
+2. `https://github.com/fc-wsd/s4-instablog`에 있는 `blogtest` 앱을 통채로 내려 받아 자신의 블로그 프로젝트에 추가하세요. (`https://github.com/fc-wsd/s4-instablog/tree/master/blogtest`)
+3. `settings.py`의 `INSTALLED_APPS`에 `blogtest`를 추가하세요.
+4. 마이그레이션을 수행해서 `blogtest` 앱의 모델을 데이터베이스에 반영하세요.
+5. `python manage.py test blogtest`을 실행하여 테스트를 수행하세요. 
+6. 다음과 같이 여섯 개 테스트를 모두 통과하도록 모델, 뷰, urls를 작성하세요.
+7. 모든 테스트를 통과한 코드를 자신의 블로그 프로젝트 저장소에 push 하세요.
 
+```
+➜  $ python manage.py test blogtest
+Creating test database for alias 'default'...
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.185s
+
+OK
+Destroying test database for alias 'default'...
+```
