@@ -9,6 +9,8 @@ from django.core.paginator import PageNotAnInteger
 from .models import Post
 from .models import Category
 
+from .forms import PostForm
+
 
 def list_posts(request):
     page = request.GET.get('page', 1)
@@ -39,23 +41,28 @@ def view_post(request, pk):
 
 def create_post(request):
     if request.method == 'GET':
-        categories = Category.objects.all()
-        ctx = {
-            'categories': categories,
-        }
+        form = PostForm()
     else:
-        form = request.POST
-        category = get_object_or_404(Category, pk=form['category'])
-        post = Post(
-            title=form['title'],
-            content=form['content'],
-            category=category,
-        )
-        post.full_clean()
-        post.save()
-        # return redirect(reverse('blog:view_post', kwargs={'pk': post.pk}))
-        return redirect('blog:view_post', pk=post.pk)
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            return redirect('blog:view_post', pk=post.pk)
 
+        # category = get_object_or_404(Category, pk=form['category'])
+        # post = Post(
+        #     title=form['title'],
+        #     content=form['content'],
+        #     category=category,
+        # )
+        # post.save()
+        # return redirect(reverse('blog:view_post', kwargs={'pk': post.pk}))
+        # return redirect('blog:view_post', pk=post.pk)
+
+    categories = Category.objects.all()
+    ctx = {
+        'categories': categories,
+        'form': form,
+    }
     return render(request, 'edit.html', ctx)
 
 
