@@ -22,6 +22,7 @@ class PostForm(forms.ModelForm):
                 '스팸 냄새가 납니다.',
                 code='toto_word'
             )
+        return title
 
     class Meta:
         model = Post
