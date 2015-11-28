@@ -9,4 +9,12 @@ urlpatterns = [
     url(r'^blog/', include(blog_urls, namespace='blog')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^blogtest/', include('blogtest.urls', namespace='blogtest')),
+    url(
+        r'^login/$', django_login,
+        {'template_name': 'login.html'}, name='login_url'
+    ),
+    url(
+        r'^logout/$', django_logout,
+        {'next_page': '/login/'}, name='logout_url'
+    ),
 ]

@@ -5,10 +5,10 @@ from django.shortcuts import redirect
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 
 from .models import Post
 from .models import Category
-
 from .forms import PostForm
 
 
@@ -39,13 +39,16 @@ def view_post(request, pk):
     })
 
 
+@login_required
 def create_post(request):
     if request.method == 'GET':
         form = PostForm()
     else:
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save()
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
             return redirect('blog:view_post', pk=post.pk)
 
     categories = Category.objects.all()

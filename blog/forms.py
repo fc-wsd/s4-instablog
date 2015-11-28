@@ -26,7 +26,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('category', 'title', 'content', )
+        fields = ('category', 'title', 'content',)
         # widgets = {
         #     'title': forms.PasswordInput
         # }
