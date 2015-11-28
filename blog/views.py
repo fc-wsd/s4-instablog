@@ -48,16 +48,6 @@ def create_post(request):
             post = form.save()
             return redirect('blog:view_post', pk=post.pk)
 
-        # category = get_object_or_404(Category, pk=form['category'])
-        # post = Post(
-        #     title=form['title'],
-        #     content=form['content'],
-        #     category=category,
-        # )
-        # post.save()
-        # return redirect(reverse('blog:view_post', kwargs={'pk': post.pk}))
-        # return redirect('blog:view_post', pk=post.pk)
-
     categories = Category.objects.all()
     ctx = {
         'categories': categories,
