@@ -4,6 +4,25 @@ from .models import Post
 
 
 class PostForm(forms.ModelForm):
+    def clean(self):
+        title = self.cleaned_data.get('title', '')
+        if '카지노' in title:
+            self.add_error('title', '스팸 냄새가 납니다.')
+
+    def clean_title(self):
+        title = self.cleaned_data.get('title', '')
+        if '카지노' in title:
+            raise forms.ValidationError(
+                '스팸 냄새가 납니다.',
+                code='strange_word'
+            )
+
+        if '배팅' in title:
+            raise forms.ValidationError(
+                '스팸 냄새가 납니다.',
+                code='toto_word'
+            )
+
     class Meta:
         model = Post
         fields = ('category', 'title', 'content', )
