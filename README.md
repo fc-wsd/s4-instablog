@@ -34,3 +34,14 @@ Ran 6 tests in 0.185s
 OK
 Destroying test database for alias 'default'...
 ```
+
+## 5주차 : Form, Authentication
+
+- ModelForm을 이용하여 입력값 검증하고, 데이터 저장하기
+- 인증 기능을 사용하여 로그인, 로그아웃 구현
+- 로그인 한 사람만 글 쓰기
+
+### 5주차 테스트 과제 추가
+
+5주차 테스트 내용이 추가됐습니다. tests.py 파일을 다시 가져가세요. :)
+
