@@ -59,23 +59,16 @@ def create_post(request):
     return render(request, 'edit.html', ctx)
 
 
-@login_required
 def edit_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-
-    if request.user != post.user and request.user.is_staff is False:
-        raise Exception('남의 글을 수정하지 못합니다.')
-
     if request.method == 'GET':
-        form = PostForm(instance=post)
-    elif request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save()
-            return redirect('blog:view_post', pk=post.pk)
+        post = get_object_or_404(Post, pk=pk)
+        categories = Category.objects.all()
+    else:
+        return create_post(request)
 
     return render(request, 'edit.html', {
-        'form': form,
+        'post': post,
+        'categories': categories,
     })
 
 
