@@ -81,3 +81,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_deploy')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+MEDIA_URL = '/new_world/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')

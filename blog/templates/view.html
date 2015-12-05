@@ -6,6 +6,12 @@
     <div class="post_container">
         <h3 class="post_title">{{ post.title }}</h3>
 
+        {% if post.image %}
+        <p><img src="{{ post.image.url }}" /></p>
+        {% else %}
+        <p>이미지 없는 글.</p>
+        {% endif %}
+
         <div class="post_content">{{ post.content }}</div>
 
         <div>
