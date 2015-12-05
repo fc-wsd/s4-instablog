@@ -6,6 +6,9 @@
 {% block body %}
 
 {% for post in posts %}
+
+{{ request.just_say }}
+
     <div class="post_container">
         <h3 class="post_title"><a href="{% url 'blog:view_post' post.pk %}">{{ post.title }}</a></h3>
 
