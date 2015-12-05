@@ -11,8 +11,16 @@ from .models import Post
 from .models import Category
 from .forms import PostForm
 
+import logging
+
+logger = logging.getLogger('django')
+
 
 def list_posts(request):
+    logger.debug('이상한 로그를 남기는 게 디버깅에 도움 돼?')
+    logger.info('이상한 로그를 남기는 게 정보일까?')
+    logger.warning('이상한 로그를 남기는 게 워닝...')
+    logger.error('이상한 로그를 남기는 게 에러...')
     page = request.GET.get('page', 1)
     per_page = 2
 

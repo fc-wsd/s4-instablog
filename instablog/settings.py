@@ -103,10 +103,23 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': 'access.log'
+        },
+        'file2': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': 'error.log'
+        },
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
+            'handlers': ['file', 'console', 'file2'],
+            'level': 'WARNING',
             'propagate': True,
         },
     }
