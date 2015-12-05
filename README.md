@@ -45,3 +45,11 @@ Destroying test database for alias 'default'...
 
 5주차 테스트 내용이 추가됐습니다. tests.py 파일을 다시 가져가세요. :)
 
+
+## 6주차 : Middleware, Staticfile, Logging
+
+- Middleware를 이용해 request 객첵에 속성 추가하기
+- Middleware를 이용해 Exception에 대응하기
+- static file, media file 설정하기
+  - ImageField를 이용해 파일 업로드 구현
+- Logging 다루기
