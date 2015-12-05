@@ -6,7 +6,7 @@ SECRET_KEY = '#%t0&1$ji&6rs@rjauk!4uvve-m39cpq1b#@c#+0wq(&f8sbz^'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -75,3 +75,9 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_deploy')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
