@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from django.dispatch import receiver
 
 
 class Post(models.Model):
@@ -20,11 +19,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return '/posts/{}/'.format(self.pk)
-
-    @receiver(post_delete, sender=Post)
-    def delete_attached_image(sender, **kwargs):
-        instance = kwargs.pop('instance')
-        instance.image.delete(save=False)
 
 
 class Category(models.Model):

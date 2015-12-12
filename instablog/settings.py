@@ -30,11 +30,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-<<<<<<< Updated upstream
     'instablog.sample_middlewares.SampleMiddleware',
-=======
-    'instablog.sample_middleware.SampleMiddleware',
->>>>>>> Stashed changes
 )
 
 ROOT_URLCONF = 'instablog.urls'
